@@ -162,7 +162,7 @@ function LoginRegister({ onLogin }) {
           <Button
           type="submit"
           variant="contained"
-          color="success"
+          color="primary"
           fullWidth
           sx={{ mt: 3, py: 1.5 }}
         >
