@@ -23,7 +23,7 @@ const App = (props) => {
     const token = localStorage.getItem("token");
     if (token) {
       // Verify token by fetching user list (any authenticated endpoint)
-      fetch("http://localhost:8081/api/user/list", {
+      fetch("/api/user/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

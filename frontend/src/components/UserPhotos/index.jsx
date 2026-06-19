@@ -59,7 +59,7 @@ function UserPhotos({ photoUploadTrigger, userLogin }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8081/api/photo/commentsOfPhoto/${photoId}`,
+        `/api/photo/commentsOfPhoto/${photoId}`,
         {
           method: "POST",
           headers: {
@@ -89,7 +89,7 @@ function UserPhotos({ photoUploadTrigger, userLogin }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8081/api/photo/${photoId}/comments/${commentId}`,
+        `/api/photo/${photoId}/comments/${commentId}`,
         {
           method: "DELETE",
           headers: {
@@ -119,7 +119,7 @@ function UserPhotos({ photoUploadTrigger, userLogin }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8081/api/photo/${photoId}/comments/${commentId}`,
+        `/api/photo/${photoId}/comments/${commentId}`,
         {
           method: "PUT",
           headers: {
@@ -150,7 +150,7 @@ function UserPhotos({ photoUploadTrigger, userLogin }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:8081/api/photo/${photoId}`,
+        `/api/photo/${photoId}`,
         {
           method: "DELETE",
           headers: {
@@ -178,7 +178,7 @@ function UserPhotos({ photoUploadTrigger, userLogin }) {
           {selectedPhoto && (
             <Box>
               <img
-                src={`http://localhost:8081/images/${selectedPhoto.file_name}`}
+                src={`/images/${selectedPhoto.file_name}`}
                 alt="Full view"
                 style={{ width: "100%", height: "auto" }}
               />
@@ -204,7 +204,7 @@ function UserPhotos({ photoUploadTrigger, userLogin }) {
           <CardMedia
             component="img"
             height="400"
-            image={`http://localhost:8081/images/${photo.file_name}`}
+            image={`/images/${photo.file_name}`}
               onClick={() => {
               setSelectedPhoto(photo);
               setOpenViewer(true);

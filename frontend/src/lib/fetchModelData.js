@@ -7,7 +7,7 @@
 async function fetchModel(url) {
   const token = localStorage.getItem("token");
 
-  const models = await fetch("http://localhost:8081/api" + url, {
+  const models = await fetch("/api" + url, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

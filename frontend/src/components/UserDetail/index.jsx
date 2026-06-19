@@ -39,7 +39,7 @@ function UserDetail({currentUser}) {
   const handleSave = async () => {
   try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:8081/api/user/${userId}`, {
+    const response = await fetch(`/api/user/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

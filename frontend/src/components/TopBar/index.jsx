@@ -46,7 +46,7 @@ function TopBar({ user, onLogout, onPhotoUploaded }) {
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("token");
-      await fetch("http://localhost:8081/api/admin/logout", {
+      await fetch("/api/admin/logout", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ function TopBar({ user, onLogout, onPhotoUploaded }) {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:8081/api/photo/new", {
+      const response = await fetch("/api/photo/new", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
