@@ -21,13 +21,13 @@ jobs:
 
       - name: Build backend
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/photo-backend:v1 ./backend
-          docker push ${{ secrets.DOCKER_USERNAME }}/photo-backend:v1
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/photo-backend:v${{ github.run_number }} ./backend
+          docker push ${{ secrets.DOCKER_USERNAME }}/photo-backend:v${{ github.run_number }}
 
       - name: Build frontend
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/photo-frontend:v1 ./frontend
-          docker push ${{ secrets.DOCKER_USERNAME }}/photo-frontend:v1
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/photo-frontend:v${{ github.run_number }} ./frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/photo-frontend:v${{ github.run_number }}
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
@@ -37,8 +37,13 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/final-project
+
             git pull origin main
+
+            sed -i "s|photo-backend:.*|photo-backend:v${{ github.run_number }}|g" k8s/backend-deployment.yaml
+            sed -i "s|photo-frontend:.*|photo-frontend:v${{ github.run_number }}|g" k8s/frontend-deployment.yaml
+
             kubectl apply -f k8s/
+
             kubectl rollout restart deployment backend
             kubectl rollout restart deployment frontend
-            kubectl rollout restart deployment mongodb
